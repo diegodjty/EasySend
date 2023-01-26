@@ -5,21 +5,24 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const multerConfig = {
-  limits: { fileSize: 1000000 },
-  storage: (multer.fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, __dirname + '../../uploads');
-    },
-    filename: (req, file, cb) => {
-      const extension = file.mimetype.split('/')[1];
-      cb(null, `${shortid.generate()}.${extension}`);
-    },
-  })),
-};
-const upload = multer(multerConfig).single('file');
 
 const uploadFile = async (req, res, next) => {
+  const multerConfig = {
+    limits: { fileSize: req.user ? 1024 * 1024 * 10 : 1024 * 1024 },
+    storage: (multer.fileStorage = multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, __dirname + '../../uploads');
+      },
+      filename: (req, file, cb) => {
+        const extension = file.originalname.substring(
+          file.originalname.lastIndexOf('.'),
+          file.originalname.length
+        );
+        cb(null, `${shortid.generate()}${extension}`);
+      },
+    })),
+  };
+  const upload = multer(multerConfig).single('file');
   upload(req, res, async (error) => {
     console.log(error);
     if (!error) {
