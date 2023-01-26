@@ -11,6 +11,8 @@ db();
 // App port
 const port = process.env.PORT || 4000;
 
+app.use(express.json());
+
 // app routes
 app.use('/api/users', userRoutes);
 

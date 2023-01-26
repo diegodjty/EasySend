@@ -14,4 +14,5 @@ const UsersSchema = new Schema({
   password: { type: String, require: true, trim: true },
 });
 
-export default Users = mongoose.model('Users', UsersSchema);
+const Users = mongoose.model('Users', UsersSchema);
+export default Users;
