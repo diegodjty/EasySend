@@ -38,12 +38,44 @@ const newLink = async (req, res, next) => {
 
   // Save on DB
   try {
+    console.log('saved');
     await link.save();
     res.json({ msg: `${link.url}` });
     next();
   } catch (error) {
+    console.log('not saved');
     console.log(error);
   }
 };
 
-export { newLink };
+// Get Link
+const getLink = async (req, res, next) => {
+  const { url } = req.params;
+  // verify if link exist
+  const link = await Links.findOne({ url });
+
+  if (!link) {
+    res.status(404).json({ msg: 'Link dosnt exist' });
+    return next();
+  }
+
+  // If link exist
+  res.json({ file: link.name });
+
+  const { downloads, name } = link;
+
+  if (downloads === 1) {
+    console.log('1');
+    // Delete file
+    req.file = name;
+    // Delefe from DB
+    await Links.findOneAndRemove(req.params.url);
+    next();
+  } else {
+    link.downloads--;
+    await link.save();
+    console.log('more than 1');
+  }
+};
+
+export { newLink, getLink };

@@ -1,8 +1,8 @@
-import e from 'express';
 import multer from 'multer';
 import shortid from 'shortid';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -34,7 +34,14 @@ const uploadFile = async (req, res, next) => {
   });
 };
 const deleteFile = async (req, res) => {
-  console.log('delete');
+  console.log(req.file);
+
+  try {
+    fs.unlinkSync(__dirname + `/../uploads/${req.file}`);
+    console.log('delete succesfully');
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export { uploadFile, deleteFile };

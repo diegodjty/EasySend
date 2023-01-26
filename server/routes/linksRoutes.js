@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router();
-import { newLink } from '../controllers/linksController.js';
+import { getLink, newLink } from '../controllers/linksController.js';
+import { deleteFile } from '../controllers/filesControllers.js';
 import { check } from 'express-validator';
 import auth from '../middleware/auth.js';
 
@@ -13,5 +14,7 @@ router.post(
   auth,
   newLink
 );
+
+router.get('/:url', getLink, deleteFile);
 
 export default router;

@@ -4,6 +4,5 @@ import { uploadFile, deleteFile } from '../controllers/filesControllers.js';
 import auth from '../middleware/auth.js';
 
 router.post('/', auth, uploadFile);
-router.delete('/:id', deleteFile);
 
 export default router;
