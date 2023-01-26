@@ -1,7 +1,13 @@
 import Users from '../models/Users.js';
 import bcrypt from 'bcrypt';
-
+import { validationResult } from 'express-validator';
 const newUser = async (req, res) => {
+  // Show error messages of express validator
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   // Verify is user is already registered
   const { email, password } = req.body;
   let user = await Users.findOne({ email });
