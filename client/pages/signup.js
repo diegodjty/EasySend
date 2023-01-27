@@ -1,8 +1,13 @@
 import Layout from '../components/Layout';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useContext, useEffect } from 'react';
+import authContext from '../context/auth/authContext';
 
 export default function Signup() {
+  const AuthContext = useContext(authContext);
+  const { registerUser } = AuthContext;
+
   // Form and validation with formik and yup
   const formik = useFormik({
     initialValues: { name: '', email: '', password: '' },
@@ -16,7 +21,7 @@ export default function Signup() {
         .min(6, 'Password should at least have 6 characters'),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      registerUser(values);
     },
   });
 
