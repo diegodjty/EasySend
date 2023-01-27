@@ -1,7 +1,9 @@
 import { useReducer } from 'react';
 import authContext from './authContext';
 import authReducer from './authReducer';
-import { AUTH_USER } from '../../types';
+import axiosClient from '../../config/axios';
+
+import { SIGNUP_SUCCESS, SIGNUP_FAILED, CLEAN_ALERT } from '../../types';
 
 const AuthState = ({ children }) => {
   // Initial State
@@ -15,17 +17,27 @@ const AuthState = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   // Register new user
-  const registerUser = (datos) => {
-    console.log(datos);
+  const registerUser = async (data) => {
+    try {
+      const response = await axiosClient.post('/api/users', data);
+      dispatch({
+        type: SIGNUP_SUCCESS,
+        payload: response.data.msg,
+      });
+
+      setTimeout(() => {
+        dispatch({
+          type: CLEAN_ALERT,
+        });
+      }, 2000);
+    } catch (error) {
+      dispatch({
+        type: SIGNUP_FAILED,
+        payload: error.response.data.msg,
+      });
+    }
   };
 
-  // Auth User
-  const authUser = (name) => {
-    dispatch({
-      type: AUTH_USER,
-      payload: name,
-    });
-  };
   return (
     <authContext.Provider
       value={{
@@ -34,7 +46,6 @@ const AuthState = ({ children }) => {
         user: state.user,
         message: state.message,
         registerUser,
-        authUser,
       }}
     >
       {children}

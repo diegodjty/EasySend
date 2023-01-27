@@ -4,12 +4,20 @@ import userRoutes from './routes/usersRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import linksRoutes from './routes/linksRoutes.js';
 import filesRoutes from './routes/filesRoutes.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
+import cors from 'cors';
 
 // Create server
 const app = express();
 
 // Connect to DB
 db();
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+};
+app.use(cors(corsOptions));
 
 // App port
 const port = process.env.PORT || 4000;
