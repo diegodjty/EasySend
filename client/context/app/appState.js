@@ -10,7 +10,9 @@ import {
   UPLOAD_FILE,
   CREATE_LINK_SUCCESS,
   CREATE_LINK_FAILED,
-  CLEAN_STATE
+  CLEAN_STATE,
+  ADD_PASSWORD,
+  ADD_DOWNLOADS,
 } from '../../types';
 
 const AppState = ({ children }) => {
@@ -82,8 +84,22 @@ const AppState = ({ children }) => {
 
   const cleanState = () => {
     dispatch({
-      type: CLEAN_STATE
-    })
+      type: CLEAN_STATE,
+    });
+  };
+
+  const addPassword = (password) => {
+    dispatch({
+      type: ADD_PASSWORD,
+      payload: password,
+    });
+  };
+
+  const addNumberOfDownloads = (downloads) => {
+    dispatch({
+      type: ADD_DOWNLOADS,
+      payload: downloads,
+    });
   };
   return (
     <appContext.Provider
@@ -100,6 +116,8 @@ const AppState = ({ children }) => {
         uploadFile,
         createLink,
         cleanState,
+        addPassword,
+        addNumberOfDownloads,
       }}
     >
       {children}

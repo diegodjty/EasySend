@@ -7,6 +7,8 @@ import {
   CREATE_LINK_FAILED,
   UPLOAD_FILE,
   CLEAN_STATE,
+  ADD_PASSWORD,
+  ADD_DOWNLOADS,
 } from '../../types';
 export default (state, action) => {
   switch (action.type) {
@@ -54,6 +56,16 @@ export default (state, action) => {
         password: '',
         author: null,
         url: '',
+      };
+    case ADD_PASSWORD:
+      return {
+        ...state,
+        password: action.payload,
+      };
+    case ADD_DOWNLOADS:
+      return {
+        ...state,
+        downloads: action.payload,
       };
     default:
       return state;
