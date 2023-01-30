@@ -2,6 +2,7 @@ import multer from 'multer';
 import shortid from 'shortid';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import Links from '../models/Links.js';
 import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -44,4 +45,27 @@ const deleteFile = async (req, res) => {
   }
 };
 
-export { uploadFile, deleteFile };
+const download = async (req, res, next) => {
+  // Get link
+  const link = await Links.findOne({ name: req.params.file });
+
+  const file = __dirname + '/../uploads/' + req.params.file;
+  res.download(file);
+
+  const { downloads, name } = link;
+
+  if (downloads === 1) {
+    console.log('1');
+    // Delete file
+    req.file = name;
+    // Delefe from DB
+    await Links.findOneAndRemove(link.id);
+    next();
+  } else {
+    link.downloads--;
+    console.log(link);
+    await link.save();
+    console.log('more than 1');
+  }
+};
+export { uploadFile, deleteFile, download };

@@ -1,7 +1,11 @@
 import express from 'express';
 const router = express.Router();
-import { getLink, newLink } from '../controllers/linksController.js';
-import { deleteFile } from '../controllers/filesControllers.js';
+import {
+  getLink,
+  newLink,
+  getAllLinks,
+} from '../controllers/linksController.js';
+
 import { check } from 'express-validator';
 import auth from '../middleware/auth.js';
 
@@ -15,6 +19,8 @@ router.post(
   newLink
 );
 
-router.get('/:url', getLink, deleteFile);
+router.get('/', getAllLinks);
+
+router.get('/:url', getLink);
 
 export default router;

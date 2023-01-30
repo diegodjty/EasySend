@@ -24,6 +24,9 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
+// Enable public dir
+app.use(express.static('uploads'));
+
 // app routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);

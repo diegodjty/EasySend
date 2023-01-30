@@ -62,20 +62,17 @@ const getLink = async (req, res, next) => {
   // If link exist
   res.json({ file: link.name });
 
-  const { downloads, name } = link;
+  next();
+};
 
-  if (downloads === 1) {
-    console.log('1');
-    // Delete file
-    req.file = name;
-    // Delefe from DB
-    await Links.findOneAndRemove(req.params.url);
-    next();
-  } else {
-    link.downloads--;
-    await link.save();
-    console.log('more than 1');
+const getAllLinks = async (req, res, next) => {
+  try {
+    const links = await Links.find({}).select('url -_id');
+    res.json({ links });
+  } catch (error) {
+    console.log('THIS RUNS');
+    console.log(error);
   }
 };
 
-export { newLink, getLink };
+export { newLink, getLink, getAllLinks };
