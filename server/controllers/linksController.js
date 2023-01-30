@@ -10,12 +10,12 @@ const newLink = async (req, res, next) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { original_name } = req.body;
+  const { original_name, name } = req.body;
 
   // Create a link Object
   const link = new Links();
   link.url = shortid.generate();
-  link.name = shortid.generate();
+  link.name = name;
   link.original_name = original_name;
 
   // If user is authenticated

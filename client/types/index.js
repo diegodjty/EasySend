@@ -1,7 +1,16 @@
-export const AUTH_USER = 'AUTH_USER';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
-export const CLEAN_ALERT = 'CLEAN_ALERT';
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_ERROR = 'SIGNIN_ERROR';
+export const AUTH_USER = 'AUTH_USER';
 export const SIGNOUT = 'SIGNOUT';
+
+export const CLEAN_ALERT = 'CLEAN_ALERT';
+export const SHOW_ALERT = 'SHOW_ALERT';
+
+export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const UPLOAD_FILE_SUCCESS = 'UPLOAD_FILE_SUCCESS';
+export const UPLOAD_FILE_FAILED = 'UPLOAD_FILE_FAILED';
+
+export const CREATE_LINK_SUCCESS = 'CREATE_LINK_SUCCESS';
+export const CREATE_LINK_FAILED = 'CREATE_LINK_FAILED';
