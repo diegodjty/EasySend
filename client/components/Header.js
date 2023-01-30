@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header className="py-8 flex felx-col md:flex-row item-center justify-between">
       <Link href="/">
-        <img className="w-64 mb-8 md:mb-0" src="logo.png" alt="" />
+        <img className="w-64 mb-8 md:mb-0" src="/logo.png" alt="" />
       </Link>
       <div>
         {user ? (
