@@ -6,6 +6,7 @@ import {
   CREATE_LINK_SUCCESS,
   CREATE_LINK_FAILED,
   UPLOAD_FILE,
+  CLEAN_STATE,
 } from '../../types';
 export default (state, action) => {
   switch (action.type) {
@@ -41,6 +42,18 @@ export default (state, action) => {
       return {
         ...state,
         url: action.payload,
+      };
+    case CLEAN_STATE:
+      return {
+        ...state,
+        file_message: '',
+        name: '',
+        original_name: '',
+        loading: false,
+        downloads: 1,
+        password: '',
+        author: null,
+        url: '',
       };
     default:
       return state;
