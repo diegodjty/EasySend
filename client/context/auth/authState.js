@@ -11,7 +11,7 @@ import {
   SIGNIN_ERROR,
   SIGNIN_SUCCESS,
   AUTH_USER,
-  SIGNOUT
+  SIGNOUT,
 } from '../../types';
 
 const AuthState = ({ children }) => {
@@ -75,10 +75,12 @@ const AuthState = ({ children }) => {
     }
     try {
       const response = await axiosClient.get('/api/auth');
-      dispatch({
-        type: AUTH_USER,
-        payload: response.data.user,
-      });
+      if (response.data.user) {
+        dispatch({
+          type: AUTH_USER,
+          payload: response.data.user,
+        });
+      }
     } catch (error) {
       dispatch({
         type: SIGNIN_ERROR,
@@ -91,7 +93,7 @@ const AuthState = ({ children }) => {
   const signOut = () => {
     dispatch({
       type: SIGNOUT,
-    })
+    });
   };
 
   return (

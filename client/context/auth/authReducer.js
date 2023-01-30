@@ -33,6 +33,7 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
+        authenticated: true,
       };
     case SIGNOUT:
       localStorage.removeItem('es_token');
