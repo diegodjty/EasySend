@@ -15,6 +15,7 @@ const Dropzone = () => {
     const formData = new FormData();
     formData.append('file', acceptedFiles[0]);
     uploadFile(formData, acceptedFiles[0].path);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onDropRejected = () => {

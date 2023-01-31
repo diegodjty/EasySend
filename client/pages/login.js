@@ -16,6 +16,7 @@ export default function Login() {
     if (authenticated) {
       router.push('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authenticated]);
 
   // Form and validation with formik and yup

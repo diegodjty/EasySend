@@ -26,7 +26,7 @@ export async function getStaticPaths() {
   };
 }
 
-export default ({ link }) => {
+const Link = ({ link }) => {
   const [hasPassword, setHaspassword] = useState(link.password);
   const [password, setPassword] = useState('');
   const AppContext = useContext(appContext);
@@ -101,3 +101,4 @@ export default ({ link }) => {
     </Layout>
   );
 };
+export default Link;

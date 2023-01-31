@@ -18,6 +18,7 @@ export default function Home() {
     if (token) {
       authUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Layout>
@@ -55,8 +56,8 @@ export default function Home() {
                   <span className="text-red-500 font-bold">EasySend</span>{' '}
                   allows you to share files with end-to-end encryption, files
                   are deleted after being downloaded. So you can keep what you
-                  share private and make sure your stuff doesn't stay online
-                  forever.
+                  share private and make sure your stuff doesn&apos;t stay
+                  online forever.
                 </p>
                 <Link href="/signup">
                   <p className="text-red-500 font-bold text-lg hover:text-red-700">
