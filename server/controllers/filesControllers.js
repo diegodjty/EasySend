@@ -25,21 +25,17 @@ const uploadFile = async (req, res, next) => {
   };
   const upload = multer(multerConfig).single('file');
   upload(req, res, async (error) => {
-    console.log(error);
     if (!error) {
       res.json({ file: req.file.filename });
     } else {
-      console.log(error);
       return next();
     }
   });
 };
 const deleteFile = async (req, res) => {
-  console.log(req.file);
 
   try {
     fs.unlinkSync(__dirname + `/../uploads/${req.file}`);
-    console.log('delete succesfully');
   } catch (error) {
     console.log(error);
   }
@@ -55,7 +51,6 @@ const download = async (req, res, next) => {
   const { downloads, name } = link;
 
   if (downloads === 1) {
-    console.log('1');
     // Delete file
     req.file = name;
     // Delefe from DB
@@ -63,9 +58,7 @@ const download = async (req, res, next) => {
     next();
   } else {
     link.downloads--;
-    console.log(link);
     await link.save();
-    console.log('more than 1');
   }
 };
 export { uploadFile, deleteFile, download };

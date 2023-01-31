@@ -38,12 +38,10 @@ const newLink = async (req, res, next) => {
 
   // Save on DB
   try {
-    console.log('saved');
     await link.save();
     res.json({ msg: `${link.url}` });
     next();
   } catch (error) {
-    console.log('not saved');
     console.log(error);
   }
 };
@@ -70,7 +68,6 @@ const getAllLinks = async (req, res, next) => {
     const links = await Links.find({}).select('url -_id');
     res.json({ links });
   } catch (error) {
-    console.log('THIS RUNS');
     console.log(error);
   }
 };
