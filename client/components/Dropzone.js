@@ -22,6 +22,7 @@ const Dropzone = () => {
       'Unable to upload, Limit is 1MB, get a free account to upload larger file'
     );
   };
+  const maxSize = authenticated ? 1000000000000 : 1000000;
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
     useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
