@@ -25,7 +25,7 @@ const Dropzone = () => {
   const maxSize = authenticated ? 1000000000000 : 1000000;
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({ onDropAccepted, onDropRejected, maxSize: 1000000 });
+    useDropzone({ onDropAccepted, onDropRejected, maxSize: maxSize });
 
   const files = acceptedFiles.map((file) => (
     <li
