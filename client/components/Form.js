@@ -12,8 +12,9 @@ const Form = () => {
         <select
           className="appearance-none w-full mt-2 bg-white border border-gray-400 text-black py-3 px-4 pr-8 rounded leading-none focus:outline-none focus:border-gray-500"
           onChange={(e) => addNumberOfDownloads(parseInt(e.target.value))}
+          defaultValue={'DEFAULT'}
         >
-          <option value="" selected disabled>
+          <option value="DEFAULT" selected disabled>
             -- Select --
           </option>
           <option value="1">1 Download</option>
