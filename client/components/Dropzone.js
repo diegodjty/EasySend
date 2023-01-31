@@ -39,7 +39,7 @@ const Dropzone = () => {
   ));
 
   return (
-    <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0 flex flex-col justify-center items-center border-dashed border-gray-400 border-2 bg-gray-100">
+    <div className="md:flex-1 mb-3 mx-2 mt-16 p-4 lg:mt-0 flex flex-col justify-center items-center border-dashed border-gray-400 border-2 bg-gray-100">
       {acceptedFiles.length > 0 ? (
         <div className="mt-10 w-full">
           <h4 className="text-2xl font-bold text-center mb-4"></h4>
@@ -49,7 +49,7 @@ const Dropzone = () => {
             <p className="my-10 text-center text-gray-600">Uploading File...</p>
           ) : (
             <button
-              className="bg-blue-700 w-[95%] m-auto py-3 rounded-lg text-white my-10 hover:bg-blue-800"
+              className="bg-blue-700 w-[100%] m-auto py-3 rounded-lg text-white my-10 hover:bg-blue-800"
               type="button"
               onClick={() => createLink()}
             >
@@ -71,7 +71,7 @@ const Dropzone = () => {
               </p>
               <button
                 type="button"
-                className="bg-blue-700 w-[95%] m-auto py-3 rounded-lg text-white my-10 hover:bg-blue-800 "
+                className="bg-blue-700 w-[100%] m-auto py-3 rounded-lg text-white my-10 hover:bg-blue-800 "
               >
                 Select file to upload
               </button>
