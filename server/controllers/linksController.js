@@ -60,7 +60,7 @@ const getLink = async (req, res, next) => {
   }
 
   // If link exist
-  res.json({ file: link.name });
+  res.json({ file: link.name, password: false });
 
   next();
 };
@@ -75,4 +75,35 @@ const getAllLinks = async (req, res, next) => {
   }
 };
 
-export { newLink, getLink, getAllLinks };
+const hasPassword = async (req, res, next) => {
+  const { url } = req.params;
+  // verify if link exist
+  const link = await Links.findOne({ url });
+
+  if (!link) {
+    res.status(404).json({ msg: 'Link dosnt exist' });
+    return next();
+  }
+
+  if (link.password) {
+    return res.json({ password: true, link: link.url });
+  }
+  next();
+};
+
+const verifyPassword = async (req, res, next) => {
+  const { url } = req.params;
+
+  const link = await Links.findOne({ url });
+  const { password } = req.body;
+
+  //verify password
+  if (bcrypt.compareSync(password, link.password)) {
+    //allow user to download fule
+    next();
+  } else {
+    return res.status(401).json({ msg: 'Incorrect Password' });
+  }
+};
+
+export { verifyPassword, newLink, getLink, getAllLinks, hasPassword };

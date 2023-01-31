@@ -4,6 +4,8 @@ import {
   getLink,
   newLink,
   getAllLinks,
+  hasPassword,
+  verifyPassword,
 } from '../controllers/linksController.js';
 
 import { check } from 'express-validator';
@@ -21,6 +23,8 @@ router.post(
 
 router.get('/', getAllLinks);
 
-router.get('/:url', getLink);
+router.get('/:url', hasPassword, getLink);
+
+router.post('/:url', verifyPassword, getLink);
 
 export default router;

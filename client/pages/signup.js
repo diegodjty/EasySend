@@ -36,7 +36,7 @@ export default function Signup() {
         <div className="flex justify-center mt-5">
           <div className="w-full max-w-lg">
             <form
-              action=""
+              
               className="bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4"
               onSubmit={formik.handleSubmit}
             >
