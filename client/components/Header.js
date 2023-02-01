@@ -19,18 +19,18 @@ const Header = () => {
 
   const redirect = () => {
     router.push('/');
-    cleanState()
+    cleanState();
   };
   return (
-    <header className="py-8 flex felx-col md:flex-row item-center justify-between">
+    <header className="py-8 flex flex-col md:flex-row item-center justify-between ">
       <img
-        className="w-64 mb-8 md:mb-0 cursor-pointer"
+        className="w-64 mb-8 md:mb-0 cursor-pointer "
         src="/logo.png"
         alt=""
         onClick={() => redirect()}
       />
 
-      <div>
+      <div className="flex justify-center">
         {user ? (
           <div className="flex items-center">
             <p className="mr-2">Hi! {user.name}</p>
@@ -46,13 +46,13 @@ const Header = () => {
           <>
             <Link
               href="/login"
-              className="bg-red-500 px-5 py-3 rounded text-white font-bold uppercase mr-2"
+              className="bg-red-500 px-5 py-3 rounded text-white font-bold uppercase mr-2 md:h-2/3"
             >
               Login
             </Link>
             <Link
               href="/signup"
-              className="bg-black px-5 py-3 rounded text-white font-bold uppercase"
+              className="bg-black px-5 py-3 rounded text-white font-bold uppercase md:h-2/3"
             >
               Signup
             </Link>
