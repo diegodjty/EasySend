@@ -22,7 +22,7 @@ const Header = () => {
     cleanState();
   };
   return (
-    <header className="py-8 flex flex-col md:flex-row item-center justify-between ">
+    <header className="py-5 flex flex-col justify-center items-center md:flex-row md:justify-between">
       <img
         className="w-64 mb-8 md:mb-0 cursor-pointer "
         src="/logo.png"
