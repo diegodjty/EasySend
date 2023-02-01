@@ -4,7 +4,7 @@ import React, { useState, useContext } from 'react';
 import appContext from '../../context/app/appContext';
 import Alert from '../../components/Alert';
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { link } = params;
   const result = await axiosClient.get(`/api/links/${link}`);
 
@@ -15,14 +15,14 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export async function getStaticPaths() {
+export async function getServerPaths() {
   const links = await axiosClient.get('/api/links');
 
   return {
     paths: links.data.links.map((link) => ({
       params: { link: link.url },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
